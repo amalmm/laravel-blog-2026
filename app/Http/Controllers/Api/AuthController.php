@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 Use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -33,7 +33,30 @@ class AuthController extends Controller
             'message' => 'Logged in successfully.',
             'user' => $user,
             'token' => $token
-        ], 200);
+        ], 201); // 201 created status
 
+    }
+
+    public function login (Request $request){
+        $validated = $request->validate([
+            'email'=>'required|string|email',
+            'password'=>'required|string'
+        ]);
+        # auth attempt
+        if(!Auth::attempt($validated)){
+             return response()->json([
+                'message' => 'Invalid email or password.'
+            ], 401); // 401 Unauthorized status
+        }
+        # fetch user
+        $user = Auth::user();
+        # issue personal access bearer token
+        $token = $user->createToken('blogToken')->accessToken;
+        # return data
+        return response()->json([
+            'message'=>'login successful',
+            'user'=>$user,
+            'token'=>$token
+        ],200);
     }
 }
