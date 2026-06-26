@@ -10,16 +10,16 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
           
 </head>
-<body class="bg-blue-50">
-    <nav class="container px-4 py-4 bg-white shadow">
+<body class="bg-white">
+    <nav class="container px-4 py-4 bg-white border-b-1">
         <div>
             <a href="#" class="text-black text-xl font-brand">
                 Laravel Blog
             </a>
         </div>
     </nav>
-    @yield('content')
-    <footer class="container px-4 mx-auto bg-white shadow ">
+             @yield('content')
+      <footer class="container px-4 mx-auto bg-white border-t-1 ">
         
         <ul class="py-5 flex flex-wrap gap-x-5 gap-y-2 ">
             <li class="">Follow us</li>
