@@ -5,8 +5,9 @@
         <div class="mb-4">
             <h1 class="text-3xl font-semibold">Latest Blogs</h1>
         </div>
-         <ul id="blog-list" class=" flex flex-col  max-w-[500px]   divide-y divide-gray-500">
-             <li id="blog-temp" class="hidden py-4">
+         <ul id="blog-container" class=" flex flex-col  max-w-[500px]   divide-y divide-gray-500">
+            <div class="blog-loading">loading..</div>
+             <li class="blog-template hidden py-4">
                 <h6 class="blog-date font-semibold text-gray-600 "></h6>
                 <h1 class="blog-title font-normal text-xl"></h1>
                 <p class="blog-description"></p>
@@ -26,16 +27,18 @@
                 }).then(res=>{
                     // console.log(res.data)
                     const post = res.data
-                    const blogList = document.getElementById('blog-list');
-                    const template = document.getElementById('blog-temp');
+                    const blogContainer = document.getElementById('blog-container');
+                    const blogTemplate = blogContainer.querySelector('.blog-template');
+                    const blogloading = blogContainer.querySelector('.blog-loading').remove();
                     
+                    // blogContainer.querySelector('')
                     post.forEach(post=>{
-                        const clone = template.cloneNode(true);
+                        const clone = blogTemplate.cloneNode(true);
                         clone.classList.remove('hidden'); // Make visible
                         clone.querySelector('.blog-date').textContent = post.date;
                         clone.querySelector('.blog-title').textContent = post.title;
                         clone.querySelector('.blog-description').textContent = post.description;
-                        blogList.appendChild(clone);
+                        blogContainer.appendChild(clone);
                     });
                 });
              });
