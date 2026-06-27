@@ -13,6 +13,7 @@
                 <p class="blog-description"></p>
             </li>
           </ul>
+          
          <script>
              document.addEventListener('DOMContentLoaded',function(){
                 fetch('api/blog',{
