@@ -11,7 +11,7 @@
           
 </head>
 <body class="bg-white">
-    <nav class="container px-4 py-4 bg-white border-b-1">
+    <nav class="container mx-auto px-4 py-4 bg-white border-b-1">
         <div>
             <a href="#" class="text-black text-xl font-brand">
                 Laravel Blog
